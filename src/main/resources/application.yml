@@ -1,17 +1,13 @@
 spring:
-  application:
-    name: expense-tracker
   datasource:
-    url: jdbc:postgresql://localhost:5432/controledespesas?autoReconnect=true&useSSL=false
-    username: postgres
-    password: marisfelipe1805
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://host.docker.internal:3306/expensetracker?serverTimezone=UTC
+    username: root
+    password: root
   jpa:
-    properties:
-      hibernate:
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:
@@ -19,6 +15,5 @@ logging:
       hibernate:
         type: trace
 
-
-server:
-  port: 8081
+#server:
+#  port: 8081

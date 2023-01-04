@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    container_name: expensetracker-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expensetracker
+    restart: always
+    networks:
+      - workspace
+    expose:
+      - 3306
+
+  expense-tracker-api:
+    build:
+      dockerfile: Dockerfile
+    container_name: expense-tracker-api
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    networks:
+      - workspace
+    depends_on:
+      - db
+
+networks:
+  workspace:
+    driver: bridge
