@@ -18,7 +18,7 @@ import java.util.List;
 public class TransactionController {
 
     private final TransactionService transactionService;
-    private final TransactionCategoryService transactionCategoryService;
+
 
     @PostMapping("create")
     public ResponseEntity<Void> save(@RequestBody TransactionDTO transactionDTO) {
@@ -57,11 +57,5 @@ public class TransactionController {
             TransactionParamsDTO transactionParams) {
         List<ExpensesSummaryDTO> summary = transactionService.getExpenseSummaryByCategory(transactionParams);
         return new ResponseUtil().ok(summary);
-    }
-
-    @GetMapping("categories")
-    public ResponseEntity<ApiResponseDTO<List<TransactionCategoryDTO>>> findTransactionCategories() {
-        List<TransactionCategoryDTO> categories = transactionCategoryService.findTransactionCategories();
-        return new ResponseUtil().ok(categories);
     }
 }
